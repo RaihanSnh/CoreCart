@@ -1,0 +1,1 @@
+export { IphonePro } from "./IphonePro";
