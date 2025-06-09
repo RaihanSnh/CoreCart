@@ -10,11 +10,11 @@ export const ProfilePage: React.FC = () => {
   const { user, logout } = useStore();
 
   const menuItems = [
-    { icon: User, label: 'Edit Profile', action: () => {} },
-    { icon: MapPin, label: 'Addresses', action: () => {} },
-    { icon: CreditCard, label: 'Payment Methods', action: () => {} },
-    { icon: Bell, label: 'Notifications', action: () => {} },
-    { icon: Settings, label: 'Settings', action: () => {} },
+    { icon: User, label: 'Edit Profile', action: () => navigate('/profile/edit') },
+    { icon: MapPin, label: 'Addresses', action: () => navigate('/profile/addresses') },
+    { icon: CreditCard, label: 'Payment Methods', action: () => navigate('/profile/payment-methods') },
+    { icon: Bell, label: 'Notifications', action: () => navigate('/profile/notifications') },
+    { icon: Settings, label: 'Settings', action: () => navigate('/profile/settings') },
     { icon: HelpCircle, label: 'Help & Support', action: () => {} },
   ];
 

@@ -59,7 +59,7 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-gray-50 dark:bg-gray-950">
       {/* Hero Banners (Carousel) */}
       <div className="px-4 relative">
         <div className="relative w-full h-[160px] rounded-lg overflow-hidden">
@@ -133,9 +133,9 @@ export const HomePage: React.FC = () => {
         <ScrollArea className="w-full">
           <div className="flex space-x-4 pb-4">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200">
-                <Link to={`/product/${product.id}`} className="block">
-                  <CardContent className="p-3">
+              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200 flex flex-col">
+                <Link to={`/product/${product.id}`} className="block flex-grow">
+                  <CardContent className="p-3 flex flex-col h-full">
                     <div className="relative mb-3">
                       <img
                         src={product.image}
@@ -148,14 +148,14 @@ export const HomePage: React.FC = () => {
                         </Badge>
                       )}
                     </div>
-                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2 h-8 overflow-hidden">
                       {product.name}
                     </h3>
                     <div className="flex items-center gap-1 mb-2">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       <span className="text-xs text-gray-600">{product.rating}</span>
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 mt-auto">
                       <div className="text-sm font-bold text-gray-900">
                         Rp {product.price.toLocaleString()}
                       </div>
@@ -167,12 +167,14 @@ export const HomePage: React.FC = () => {
                     </div>
                   </CardContent>
                 </Link>
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="w-full mt-2 bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors"
-                >
-                  Add to Cart
-                </button>
+                <div className="px-2 pb-2">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full my-2 bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors px-3"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </Card>
             ))}
           </div>
@@ -195,9 +197,9 @@ export const HomePage: React.FC = () => {
         <ScrollArea className="w-full">
           <div className="flex space-x-4 pb-4">
             {newProducts.map((product) => (
-              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200">
-                <Link to={`/product/${product.id}`} className="block">
-                  <CardContent className="p-3">
+              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200 flex flex-col">
+                <Link to={`/product/${product.id}`} className="block flex-grow">
+                  <CardContent className="p-3 flex flex-col h-full">
                     <div className="relative mb-3">
                       <img
                         src={product.image}
@@ -208,24 +210,26 @@ export const HomePage: React.FC = () => {
                         New
                       </Badge>
                     </div>
-                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2 h-8 overflow-hidden">
                       {product.name}
                     </h3>
                     <div className="flex items-center gap-1 mb-2">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       <span className="text-xs text-gray-600">{product.rating}</span>
                     </div>
-                    <div className="text-sm font-bold text-gray-900 mb-2">
+                    <div className="text-sm font-bold text-gray-900 mt-auto">
                       Rp {product.price.toLocaleString()}
                     </div>
                   </CardContent>
                 </Link>
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="w-full bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors"
-                >
-                  Add to Cart
-                </button>
+                <div className="px-2 pb-2">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full my-2 bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors px-3"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </Card>
             ))}
           </div>
@@ -248,33 +252,48 @@ export const HomePage: React.FC = () => {
         <ScrollArea className="w-full">
           <div className="flex space-x-4 pb-4">
             {topRatedProducts.map((product) => (
-              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200">
-                <Link to={`/product/${product.id}`} className="block">
-                  <CardContent className="p-3">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-24 object-cover rounded-md mb-3"
-                    />
-                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2">
+              <Card key={product.id} className="w-40 flex-shrink-0 bg-white shadow-sm border border-gray-200 flex flex-col">
+                <Link to={`/product/${product.id}`} className="block flex-grow">
+                  <CardContent className="p-3 flex flex-col h-full">
+                    <div className="relative mb-3">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-24 object-cover rounded-md"
+                      />
+                      {product.discount && (
+                        <Badge className="absolute top-1 right-1 bg-red-500 text-white text-xs px-1">
+                          -{product.discount}%
+                        </Badge>
+                      )}
+                    </div>
+                    <h3 className="text-xs font-medium text-gray-900 mb-2 line-clamp-2 h-8 overflow-hidden">
                       {product.name}
                     </h3>
                     <div className="flex items-center gap-1 mb-2">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       <span className="text-xs text-gray-600">{product.rating}</span>
-                      <span className="text-xs text-gray-500">({product.reviews})</span>
                     </div>
-                    <div className="text-sm font-bold text-gray-900 mb-2">
-                      Rp {product.price.toLocaleString()}
+                    <div className="space-y-1 mt-auto">
+                      <div className="text-sm font-bold text-gray-900">
+                        Rp {product.price.toLocaleString()}
+                      </div>
+                      {product.originalPrice && (
+                        <div className="text-xs text-gray-500 line-through">
+                          Rp {product.originalPrice.toLocaleString()}
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Link>
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="w-full bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors"
-                >
-                  Add to Cart
-                </button>
+                <div className="px-2 pb-2">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full my-2 bg-black text-white text-xs py-2 rounded-md hover:bg-gray-800 transition-colors px-3"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </Card>
             ))}
           </div>

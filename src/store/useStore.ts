@@ -43,9 +43,11 @@ export interface Order {
   id: string;
   items: CartItem[];
   total: number;
-  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  status: 'Payment' | 'On Process' | 'On Delivery' | 'Delivered' | 'Rate' | 'cancelled';
   date: string;
   shippingAddress: Address;
+  paymentMethod: string;
+  paidAt?: string;
 }
 
 interface StoreState {
