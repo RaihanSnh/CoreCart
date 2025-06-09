@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["@radix-ui/react-switch", "@radix-ui/react-label", "@radix-ui/react-radio-group"],
+      preserveSymlinks: true,
     },
   },
 });

@@ -1,0 +1,9 @@
+{
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build",
+  "build": {
+    "env": {
+      "NODE_MODULES_CACHE": "false"
+    }
+  }
+} 
